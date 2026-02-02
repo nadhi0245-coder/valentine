@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Ava ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff5f9e, #ff8fb1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+  transition: background 1s ease;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.scene.active {
+  display: flex;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: none;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+#yes { background: white; color: #ff4d88; }
+#no  { background: #222; color: white; }
+
+.cats {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+}
+
+.cat {
+  position: absolute;
+  font-size: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left {
+  left: 5%;
+  animation: walkLeft 6s linear forwards;
+}
+
+.right {
+  right: 5%;
+  animation: walkRight 6s linear forwards;
+}
+
+@keyframes walkLeft {
+  to { left: 45%; }
+}
+
+@keyframes walkRight {
+  to { right: 45%; }
+}
+
+.heart {
+  font-size: 60px;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 6s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+iframe { display: none; }
+</style>
+</head>
+
+<body>
+
+<!-- QUESTION -->
+<div class="scene active" id="question">
+  <h1>Ava, will you be my Valentine? 💘</h1>
+  <div>
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 💔</button>
+  </div>
+</div>
+
+<!-- YES -->
+<div class="scene" id="yesScene">
+  <h1>I love you baby ❤️</h1>
+  <div class="cats">
+    <div class="cat left">🐱</div>
+    <div class="cat right">🐱</div>
+  </div>
+  <div class="heart">❤️</div>
+</div>
+
+<!-- NO -->
+<div class="scene" id="noScene">
+  <h1 style="color:#555;">…</h1>
+</div>
+
+<!-- MUSIC (PRELOADED, DO NOT REMOVE) -->
+<iframe id="ivyPlayer" allow="autoplay"></iframe>
+<iframe id="drakePlayer" allow="autoplay"></iframe>
+
+<script>
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+
+const ivy = document.getElementById("ivyPlayer");
+const drake = document.getElementById("drakePlayer");
+
+const question = document.getElementById("question");
+const yesScene = document.getElementById("yesScene");
+const noScene = document.getElementById("noScene");
+
+yesBtn.onclick = () => {
+  drake.src = "";
+
+  // Frank Ocean – Ivy (AUDIO)
+  ivy.src = "https://www.youtube.com/embed/r4l9bFqgMaQ?autoplay=1&controls=0";
+
+  question.classList.remove("active");
+  yesScene.classList.add("active");
+};
+
+noBtn.onclick = () => {
+  ivy.src = "";
+
+  // Drake – Feel No Ways (AUDIO)
+  drake.src = "https://www.youtube.com/embed/5tW1G4d0sM4?autoplay=1&controls=0";
+
+  document.body.style.background = "#000";
+  question.classList.remove("active");
+  noScene.classList.add("active");
+};
+</script>
+
+</body>
+</html>
